@@ -5,12 +5,14 @@ import Search from "../components/Search";
 import Page404 from "../components/Page404";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+console.log(API_KEY);
 
 export default class Main extends Component {
   state = {
     films: [],
     firstMovieList: "die hard",
     loading: true,
+    error: false,
   };
 
   componentDidMount() {
@@ -24,6 +26,12 @@ export default class Main extends Component {
   onLoad = () => {
     this.setState({
       loading: true,
+    });
+  };
+
+  onError = () => {
+    this.setState({
+      error: false,
     });
   };
 
@@ -43,7 +51,13 @@ export default class Main extends Component {
           });
         }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        this.setState({
+          error: true,
+          loading: false,
+        });
+      });
   };
 
   searchFilmByName = (name, filter) => {
@@ -51,16 +65,17 @@ export default class Main extends Component {
       return;
     } else {
       this.onLoad();
-      this.onRequest("http://www.omdbapi.com/?apikey=4cbfd252&s", name, filter);
+      this.onError();
+      this.onRequest(`http://www.omdbapi.com/?apikey=${API_KEY}&s`, name, filter);
     }
   };
 
   render() {
-    const { films, loading } = this.state;
+    const { films, loading, error } = this.state;
 
     let style;
 
-    const movieNotFound = films === "movie not found!" ? <Page404 /> : null;
+    const movieNotFound = films === "movie not found!" || error ? <Page404 /> : null;
     const movie = typeof films === "object" && !loading ? <Movies films={films} /> : null;
     const preloader = loading ? <Preloader /> : null;
 
