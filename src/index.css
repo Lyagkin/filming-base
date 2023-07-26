@@ -1,3 +1,7 @@
+html {
+  font-size: 62.5%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +11,81 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+nav {
+  padding: 0 5rem;
+}
+
+nav .brand-logo {
+  font-size: 3rem;
+}
+
+nav ul a {
+  font-size: 2rem;
+}
+
+.row {
+  margin: 2rem auto;
+  width: 70%;
+}
+
+.row .col.s12 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: .80fr .20fr;
+}
+
+.inputRadio {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+
+
+.input-field input[type=search] {
+  font-size: 2rem;
+  height: 4rem;
+  width: 80%;
+}
+
+input[type=search]:not(.browser-default).validate+label {
+  font-size: 2rem;
+}
+
+.buttonSearch {
+  font-size: 2rem;
+  line-height: 4rem;
+  width: 10rem;
+  border: none;
+  background-color: rgb(112, 112, 112);
+  color: rgb(254, 254, 254);
+  display: block;
+  border-radius: .5rem;
+  cursor: pointer;
+  box-shadow: .5rem .5rem .10rem rgba(0, 0, 0, 0.7);
+  transition: .5s all;
+}
+
+.buttonSearch:hover {
+  transform: translateY(-.5rem);
+  background-color: rgb(254, 254, 254);
+  color: rgb(112, 112, 112);
+}
+
+.content {
+  margin: 0 auto;
+  min-height: calc(100vh - 7rem - 6.4rem);
+  width: 80%;
+  padding: 3rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  grid-template-rows: minmax(60rem, auto);
+  gap: 5rem;
+  font-size: 2rem;
+}
+
+footer .container {
+  font-size: 2rem;
 }
